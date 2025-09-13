@@ -29,9 +29,27 @@ jobs:
     steps:
     - name: inputs
       run: echo "Environment is ${{ inputs.environment }} and run-tests is ${{ inputs.run-tests }}"
-    - name: Checkout code
+    
+    - name: list files
+      run: ls -la
+    
+    - name: Checkout current repo
       uses: actions/checkout@v4
+  
+    - name: list files
+      run: ls -la
 
+    - name: Checkout remote workflow repo
+      uses: actions/checkout@v4
+      with:
+        repository: basivireddy1212/python-pytest-api-testing
+        ref: main
+#        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # needed if repo is private
+
+    - name: list files
+      run: ls -la
+
+      
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
