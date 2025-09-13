@@ -7,6 +7,14 @@ on:
   # pull_request:
   # schedule:
   #  - cron: '0 0 * * *' # Run daily at midnight UTC
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      run-tests:
+        required: false
+        type: string
   workflow_dispatch:
     inputs:
       run-tests:
@@ -19,6 +27,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: inputs
+      run: echo "Environment is ${{ inputs.environment }} and run-tests is ${{ inputs.run-tests }}"
     - name: Checkout code
       uses: actions/checkout@v4
 
